@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Logowanie</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Logowanie</h2>
+    <form id="login-form">
+      <input type="text" placeholder="Login" required>
+      <input type="password" placeholder="Hasło" required>
+      <div id="email-field" style="display: none;">
+        <input type="email" placeholder="Email">
+      </div>
+      <button type="submit">Zatwierdź</button>
+    </form>
+    <button id="toggle">Zarejestruj się</button>
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById('toggle');
+    const emailField = document.getElementById('email-field');
+    let registering = false;
+
+    toggleBtn.addEventListener('click', () => {
+      registering = !registering;
+      emailField.style.display = registering ? 'block' : 'none';
+      toggleBtn.textContent = registering ? 'Zaloguj się' : 'Zarejestruj się';
+    });
+  </script>
+</body>
+</html>
