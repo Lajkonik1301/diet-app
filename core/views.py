@@ -1,7 +1,52 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import AuthenticationForm
+from .forms import RegisterForm
 
 def index(request):
-    return render(request, 'core/index.html')
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('home')  # Po zalogowaniu przekierowanie na stronę główną
+    else:
+        form = AuthenticationForm()
 
-def login_page(request):
-    return render(request, 'core/login_page.html')
+    form.fields['username'].widget.attrs.update({'placeholder': 'Nazwa użytkownika'})
+    form.fields['password'].widget.attrs.update({'placeholder': 'Podaj hasło'})
+
+    #schowanie errorów
+    form.errors.clear()
+
+    return render(request, 'core/index.html', {'form': form})
+
+
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('home')  # Przekierowanie na stronę główną
+    else:
+        form = AuthenticationForm()
+    return render(request, 'core/index.html', {'form': form})
+
+def register_view(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # Logowanie po rejestracji
+            return redirect('home')  # Przekierowanie na stronę główną
+    else:
+        form = RegisterForm()
+
+    #schowanie errorów
+    form.errors.clear()
+
+    return render(request, 'core/register_page.html', {'form': form})
+
+def home(request):
+    return render(request, 'core/home.html')
