@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Strona Główna</title>
+    <link rel="stylesheet" href="{% static 'core/main.css' %}">
+</head>
+<body>
+    <div class="navbar">
+        <div style="display: flex; align-items: center;">
+                <a href="#"><button>Recipes</button></a>
+                <a href="#"><button>Statistics</button></a>
+                <a href="#"><button>History</button></a>
+                <a href="#"><button>Profile</button></a>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Pierwszy panel -->
+        <div class="panel">
+            <p>Daily summary</p>
+        </div>
+    
+        <!-- Drugi panel (z większą szerokością) -->
+        <div class="panel second-panel">
+            <p>Add meal</p>
+        </div>
+
+        <div class="panel third-panel">
+            <p>Today's meals</p>
+            <!-- Przykład dynamicznej zawartości -->
+            
+        </div>
+    </div>
+
+</body>
+</html>

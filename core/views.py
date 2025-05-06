@@ -48,5 +48,6 @@ def register_view(request):
 
     return render(request, 'core/register_page.html', {'form': form})
 
-def home(request):
-    return render(request, 'core/home.html')
+
+def main(request):
+    return render(request, 'core/main.html')
