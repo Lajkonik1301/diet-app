@@ -9,7 +9,7 @@ def index(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('home')  # Po zalogowaniu przekierowanie na stronę główną
+            return redirect('main')  # Po zalogowaniu przekierowanie na stronę główną
     else:
         form = AuthenticationForm()
 
@@ -28,7 +28,7 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('home')  # Przekierowanie na stronę główną
+            return redirect('main')  # Przekierowanie na stronę główną
     else:
         form = AuthenticationForm()
     return render(request, 'core/index.html', {'form': form})
@@ -39,7 +39,7 @@ def register_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)  # Logowanie po rejestracji
-            return redirect('home')  # Przekierowanie na stronę główną
+            return redirect('main')  # Przekierowanie na stronę główną
     else:
         form = RegisterForm()
 
