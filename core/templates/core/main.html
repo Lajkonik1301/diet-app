@@ -4,43 +4,72 @@
 <head>
     <meta charset="UTF-8">
     <title>Strona Główna</title>
+    <link rel="stylesheet" href="{% static 'core/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'core/main.css' %}">
 </head>
 <body>
     <div class="navbar">
-        <div style="display: flex; align-items: center;">
-                <a href="#"><button>Recipes</button></a>
-                <a href="#"><button>Statistics</button></a>
-                <a href="#"><button>History</button></a>
-                <a href="#"><button>Profile</button></a>
-        </div>
+    <div class="navbar-left">
+        <a href="{% url 'main' %}"><span class="brand-text">FitTrack</span></a>
     </div>
+
+    <div class="navbar-right">
+        <a href="#"><button>Recipes</button></a>
+        <a href="#"><button>Statistics</button></a>
+        <a href="#"><button>History</button></a>
+        <a href="#"><button>Profile</button></a>
+    </div>
+</div>
 
     <div class="container">
         <!-- Pierwszy panel -->
         <div class="panel">
             <h2 class="summary-title">Daily summary</h2>
             <p class="calories-text">420/2137 kcal</p>
-            <progress value="420" max="2137"></progress>
-            
-            <progress class="small-progress" value="40" max="100"></progress>
-            <progress class="small-progress" value="60" max="100"></progress>
-            <progress class="small-progress" value="80" max="100"></progress>
-            
+            <div class="progress-row">
+                <progress class="main-progress" value="420" max="2137"></progress>
+
+                <div class="progress-container">
+                    <progress class="small-progress" value="40" max="100"></progress>
+                    <progress class="small-progress" value="60" max="100"></progress>
+                    <progress class="small-progress" value="80" max="100"></progress>
+                </div>
+            </div>
             <p class="rem-text">Remaining calories: 1717</p>
         </div>
-    
+        
         <!-- Drugi panel (z większą szerokością) -->
         <div class="panel second-panel">
-            <p>Add meal</p>
+            <h2 class="summary-title">Add meal</h2>
+            <form action="#" method="post">
+                <input type="text" class="meal-input" placeholder="Meal name" name="meal-name">
+                <input type="number" class="meal-input" placeholder="Calories" name="calories">
+        
+                <!-- Rozwijane menu wyboru rodzaju posiłku -->
+                <select class="meal-select" name="meal-type">
+                    <option value="" disabled selected>Select meal type</option>
+                    <option value="breakfast">Breakfast</option>
+                    <option value="lunch">Lunch</option>
+                    <option value="dinner">Dinner</option>
+                    <option value="snack">Snack</option>
+                </select>
+
+                <!-- Pola dla wartości makroskładników -->
+                <div class="macro-container">
+                    <input type="number" class="macro-input" placeholder="Protein (g)" name="protein">
+                    <input type="number" class="macro-input" placeholder="Fat (g)" name="fat">
+                    <input type="number" class="macro-input" placeholder="Carbs (g)" name="carbs">
+                </div>
+
+                <button type="submit" class="add-meal-btn">Add</button>
+            </form>
         </div>
 
-        <div class="panel third-panel">
+        <div class="panel third-panel"> 
             <p>Today's meals</p>
-            <!-- Przykład dynamicznej zawartości -->
-            
         </div>
+        
     </div>
-
+    
 </body>
 </html>

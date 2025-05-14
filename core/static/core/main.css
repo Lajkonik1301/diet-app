@@ -1,40 +1,5 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-}
-
-/*pierwszy pasek nawigacyjny*/
-.navbar {
-    background-color: #00004d;
-    padding: 20px 20px;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.navbar a,
-.navbar form {
-    margin-left: 300px;
-}
-
-.navbar button {
-    background-color: #00004d;
-    border: none;
-    color: #ffffff;
-    padding: 8px 5px;
-    cursor: pointer;
-    border-radius: 20px;
-    font-size: 20px;
-}
-
-.content {
-    padding: 20px;
-}
-
-.user-info {
-    margin-right: 10px;
+.summary-title {
+    margin-top: -5px; 
 }
 
 /*panel*/
@@ -59,13 +24,81 @@ body {
 }
 
 .panel.second-panel {
-    width: 80%;          /* Szerokość drugiego panelu (większa niż pierwszego) */
+    width: 80%;
     height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.panel-title {
+    position: absolute;
+    top: 15px; /* Ustawia tytuł wyżej */
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Stylizacja formularza */
+form {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    gap: 15px;
+    align-items: center;
+    margin-top: -20px;
+}
+
+.meal-input, .meal-select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 18px;
+   
+}
+
+.meal-select {
+    background-color: #fff;
+    cursor: pointer;
+}
+
+/* Makroskładniki w jednej linii */
+.macro-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.macro-input {
+    width: calc(33.3% - 5px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Stylizacja przycisku dodawania posiłku */
+.add-meal-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #e30b21;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.add-meal-btn:hover {
+    background-color: #c0091d;
 }
 
 .panel.third-panel {
     width: 80%;            /* Szerokość trzeciego panelu */
-    background-color: #e2e2e2; /* Kolor tła trzeciego panelu */
+    background-color: #ffffff; /* Kolor tła trzeciego panelu */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -76,52 +109,65 @@ body {
 }
 
 
+
+
+/* Kontener w jednej linii */
+.progress-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px; /* odstęp między dużym a małymi paskami */
+}
+
 /*progress bar*/
-progress {
+.main-progress {
     width: 300px;
     height: 50px;
     appearance: none;
     margin-top: 10px;
 }
 
-progress::-webkit-progress-bar {
+.main-progress::-webkit-progress-bar {
     background-color: #f8a898;
     border-radius: 30px;
 }
 
-progress::-webkit-progress-value {
+.main-progress::-webkit-progress-value {
     background-color: #e30b21;
     border-radius: 30px;
 }
 
 
 .progress-container {
-    display: flex; /* Ustawienie pasków w wierszu */
-    justify-content: flex-end; /* Ustawienie pasków do prawej strony */
-    gap: 10px; /* Odstęp między paskami */
-    margin-top: 10px; /* Odstęp między dużym paskiem a małymi */
-    
+    display: flex;
+    margin-right: 230px;
+    gap: 140px;
 }
+
 .small-progress {
-    width: 100px; /* Możesz dostosować szerokość pasków */
-    height: 30px;
-    margin-left: 10px;
+    width: 150px; /* Możesz dostosować szerokość pasków */
+    height: 40px;
+    margin-top: 10px;
+    appearance: none;
     display: inline-block; /* Ustawienie pasków obok siebie */
     
 }
 
 .small-progress::-webkit-progress-bar {
-    background-color: #f8a898;
-    border-radius: 15px;
+    background-color: #f8a898;  /* Tło pasków */
+    border-radius: 25px;
 }
 
 .small-progress::-webkit-progress-value {
-    background-color: #e30b21;
-    border-radius: 15px;
+    background-color: #e30b21;  /* Kolor wypełnienia pasków */
+    border-radius: 25px;
 }
 
 
+
+
 .calories-text {
+    margin-top: 30px;
     margin-bottom: 0px;
     font-weight: bold;
     color: #333;
