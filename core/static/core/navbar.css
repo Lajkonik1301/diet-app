@@ -33,7 +33,7 @@ body {
 .navbar-right {
     display: flex;
     gap: 200px;
-    margin-right: 300px;
+    margin-right: 150px;
 }
 
 .navbar button {

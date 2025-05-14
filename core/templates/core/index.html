@@ -15,16 +15,16 @@
 <body>
 
   <div class="container">
-    <h2>Logowanie</h2>
+    <h2>Login</h2>
 
     <form method="POST">
       {% csrf_token %}
       {{ form.as_p }}
-      <button type="submit">Zaloguj się</button>
+      <button type="submit">Log in</button>
     </form>
 
     <a href="{% url 'register' %}">
-      <button id="toggle">Zarejestruj się</button>
+      <button id="toggle">Sign up</button>
     </a>
   </div>
 

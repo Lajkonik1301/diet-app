@@ -44,7 +44,7 @@ form {
     display: flex;
     flex-direction: column;
     width: 70%;
-    gap: 15px;
+    gap: 20px;
     align-items: center;
     margin-top: -20px;
 }
@@ -53,7 +53,7 @@ form {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 20px;
     font-size: 18px;
    
 }
@@ -74,7 +74,7 @@ form {
     width: calc(33.3% - 5px);
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 20px;
     font-size: 16px;
     text-align: center;
 }
@@ -89,6 +89,7 @@ form {
     border-radius: 5px;
     cursor: pointer;
     font-size: 18px;
+    margin-top: 20px;
     font-weight: bold;
 }
 
@@ -98,7 +99,6 @@ form {
 
 .panel.third-panel {
     width: 80%;            /* Szerokość trzeciego panelu */
-    background-color: #ffffff; /* Kolor tła trzeciego panelu */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -140,8 +140,8 @@ form {
 
 .progress-container {
     display: flex;
-    margin-right: 230px;
-    gap: 140px;
+    margin-right: 190px;
+    gap: 180px;
 }
 
 .small-progress {

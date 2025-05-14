@@ -3,19 +3,19 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>Rejestracja</title>
+  <title>Registration</title>
   <link rel="stylesheet" href="{% static 'core/style.css' %}">
-
 </head>
+
 <body>
 
   <div class="container">
-    <h2>Rejestracja</h2>
+    <h2>Registration</h2>
 
     <form method="POST">
       {% csrf_token %}
       {{ form.as_p }}
-      <button type="submit">Zarejestruj się</button>
+      <button type="submit">Sign up</button>
     </form>
 
   </div>

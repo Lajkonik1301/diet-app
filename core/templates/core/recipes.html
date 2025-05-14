@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+    <title>Recipes</title>
+    <link rel="stylesheet" href="{% static 'core/navbar.css' %}">
+  
+  <style>
+    label {
+      display: none !important;
+    }
+  </style>  
+</head>
+<body>
+
+<div class="navbar">
+    <div class="navbar-left">
+        <a href="{% url 'main' %}"><span class="brand-text">FitTrack</span></a>
+    </div>
+
+    <div class="navbar-right">
+        <a href="{% url 'recipes' %}"><button>Recipes</button></a>
+        <a href="{% url 'statistics' %}"><button>Statistics</button></a>
+        <a href="{% url 'history' %}"><button>History</button></a>
+        <a href="{% url 'profile' %}"><button>Profile</button></a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}"><button class="logout-btn">Logout</button></a>
+        {% endif %}
+    </div>
+</div>
+
+<h2>Recipes tu będzie</h2>
+
+</body>
+</html>

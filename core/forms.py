@@ -13,8 +13,8 @@ class RegisterForm(UserCreationForm):
             self.fields[fieldname].help_text = None
 
         #pola tekstowe
-        self.fields['username'].widget.attrs.update({'placeholder': 'Nazwa użytkownika'})
-        self.fields['first_name'].widget.attrs.update({'placeholder': 'Imię'})
-        self.fields['last_name'].widget.attrs.update({'placeholder': 'Nazwisko'})
-        self.fields['password1'].widget.attrs.update({'placeholder': 'Podaj hasło'})
-        self.fields['password2'].widget.attrs.update({'placeholder': 'Powtórz hasło'})
+        self.fields['username'].widget.attrs.update({'placeholder': 'Username'})
+        self.fields['first_name'].widget.attrs.update({'placeholder': 'Name'})
+        self.fields['last_name'].widget.attrs.update({'placeholder': 'Surrname'})
+        self.fields['password1'].widget.attrs.update({'placeholder': 'Password'})
+        self.fields['password2'].widget.attrs.update({'placeholder': 'Confirm password'})
