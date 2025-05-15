@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import RegisterForm
+from core.models import Meal
 
 def index(request):
     if request.method == 'POST':
@@ -53,7 +54,28 @@ def logout_view(request):
     return redirect('login') 
 
 def main(request):
-    return render(request, 'core/main.html')
+    if request.method == "POST":
+        name = request.POST.get("meal-name")
+        calories = request.POST.get("calories")
+        date = request.POST.get("date")
+        meal_type = request.POST.get("meal-type")
+        protein = request.POST.get("protein")
+        fat = request.POST.get("fat")
+        carbs = request.POST.get("carbs")
+
+        Meal.objects.create(
+            user=request.user,
+            name=name,
+            calories=calories,
+            date=date,
+            meal_type=meal_type,
+            protein=protein,
+            fat=fat,
+            carbs=carbs
+        )
+        return redirect("main")  # po dodaniu posiłku odśwież stronę
+    
+    return render(request, "core/main.html")
 
 def recipes(request):
     return render(request, 'core/recipes.html')

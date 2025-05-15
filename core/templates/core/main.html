@@ -45,8 +45,11 @@
         <div class="panel second-panel">
             <h2 class="summary-title">Add meal</h2>
             <form action="#" method="post">
+                {% csrf_token %}
                 <input type="text" class="meal-input" placeholder="Meal name" name="meal-name">
+
                 <input type="number" class="meal-input" placeholder="Calories" name="calories">
+                <input type="date" class="meal-input" name="date" id="meal-date">
         
                 <!-- Rozwijane menu wyboru rodzaju posiłku -->
                 <select class="meal-select" name="meal-type">
@@ -55,6 +58,8 @@
                     <option value="lunch">Lunch</option>
                     <option value="dinner">Dinner</option>
                     <option value="snack">Snack</option>
+                    <option value="snack">Supper</option>
+                    <option value="snack">UNSTOPPABLE MIDNIGHT SWEETS CRAVE</option>
                 </select>
 
                 <!-- Pola dla wartości makroskładników -->
@@ -73,6 +78,14 @@
         </div>
         
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const dateInput = document.getElementById("meal-date");
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.value = today;
+        });
+    </script>
     
 </body>
 </html>
