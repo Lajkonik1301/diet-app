@@ -180,6 +180,7 @@ form {
     background-color: #c0091d;
 }
 
+/* --- Panel 'today's meal --- */
 .panel.third-panel {
     width: 80%;            /* Szerokość trzeciego panelu */
     padding: 20px;
@@ -189,4 +190,24 @@ form {
     text-align: center;
     /* Bez ustawiania wysokości - to pozwala panelowi rosnąć */
     min-height: 50px;      /* Minimalna wysokość dla trzeciego panelu */
+}
+
+/* pojedynczy kafelek ze zjedzonym posiłkiem */
+.meal-card {
+  background-color: #f9f9f9;
+  padding: 12px;
+  border-radius: 10px;
+   border: 1px solid red; /*usuń to, dodałem tylko żeby było widać jak duże to */
+  margin-bottom: 10px;
+}
+
+/* nagłówek kafelka z posiłkiem */
+.meal-card h4 {
+  margin: 0 0 4px;
+  color: #2196F3;
+}
+
+/* tekst w kafelku z posiłkiem */
+.meal-card p {
+  margin: 2px 0;
 }

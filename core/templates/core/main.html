@@ -152,6 +152,19 @@
 
         <div class="panel third-panel"> 
             <h2 class="summary-title">Today's meals</h2>
+
+            {% if meals_today %}
+                {% for meal in meals_today %}
+                    <!-- pojedynczy kafelek ze zjedzonym posiłkiem -->
+                    <div class="meal-card">
+                        <h4>{{ meal.meal_type|title }}</h4>
+                        <p><strong>{{ meal.name }}</strong></p>
+                        <p>{{ meal.calories }} kcal | {{ meal.protein }}g protein | {{ meal.fat }}g fat | {{ meal.carbs }}g carbs</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No meals logged today.</p>
+            {% endif %}
         </div>
         
     </div>

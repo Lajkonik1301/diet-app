@@ -114,6 +114,7 @@ def main(request):
         "goal_protein": goal_protein,
         "goal_fat": goal_fat,
         "goal_carbs": goal_carbs,
+        "meals_today": meals_today,
     }
 
     return render(request, "core/main.html", context)
