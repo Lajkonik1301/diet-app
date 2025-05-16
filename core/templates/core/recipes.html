@@ -5,12 +5,14 @@
   <meta charset="UTF-8">
     <title>Recipes</title>
     <link rel="stylesheet" href="{% static 'core/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'core/recipes.css' %}">
   
-  <style>
+  <!-- PRZENIOSŁEM TO DO recipes.css IDK PO CO TO BYŁO, NAJWYŻEJ USUŃ STĄD I STAMTĄD JEŻELI JUŻ TO JEST USELESS 
+    <style>
     label {
       display: none !important;
     }
-  </style>  
+  </style>   -->
 </head>
 <body>
 
@@ -30,7 +32,40 @@
     </div>
 </div>
 
-<h2>Recipes tu będzie</h2>
+<div class="search-bar">
+    <form method="get" action="{% url 'recipes' %}">
+        <input type="text" name="q" placeholder="Search recipes...">
+    </form>
+    <a href="{% url 'add_recipe' %}">
+        <button>Add Recipe</button>
+    </a>
+</div>
+
+<div class="recipe-grid">
+    {% for recipe in recipes %}
+        <a href="{% url 'recipe_detail' recipe.id %}">
+            <div class="single-recipe-box">
+                <h3>{{ recipe.name }}</h3>
+                <p>Type: {{ recipe.meal_type }}</p>
+                <p>Prep time: {{ recipe.prep_time }} min</p>
+            </div>
+        </a>
+    {% empty %}
+        <p>No recipes found.</p>
+    {% endfor %}
+</div>
+
+<div class="paginator">
+    {% if recipes.has_previous %}
+        <a href="?page={{ recipes.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Previous</a>
+    {% endif %}
+
+    <span>Page {{ recipes.number }} of {{ recipes.paginator.num_pages }}</span>
+
+    {% if recipes.has_next %}
+        <a href="?page={{ recipes.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Next</a>
+    {% endif %}
+</div>
 
 </body>
 </html>

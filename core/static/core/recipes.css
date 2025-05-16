@@ -1,0 +1,56 @@
+label {
+      display: none !important;
+}
+
+/*wyszukiwarka*/
+.search-bar{
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin: 20px;
+}
+
+.search-bar > form{
+    flex: 1; 
+    margin-right: 20px;
+}
+
+.search-bar > form > input{
+    width: 100%; 
+    padding: 10px;
+}
+
+/*przycisk 'add recipe'*/
+.search-bar > a > button{
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/*siatka z przepisami*/
+.recipe-grid{
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; 
+    padding: 20px;
+}
+
+.recipe-grid > a{
+    text-decoration: none; 
+    color: inherit;
+}
+
+/*pojedynczy box przepisu*/
+.single-recipe-box{
+    border: 1px solid #ccc; 
+    padding: 20px; 
+    border-radius: 10px;
+}
+
+.paginator{
+    text-align: center; 
+    margin: 20px;
+}
+
+.paginator > span{
+    margin: 0 10px;
+}

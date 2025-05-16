@@ -7,8 +7,11 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('main/', views.main, name='main'),
     path('logout/', views.logout_view, name='logout'),
-    path('recipes/', views.recipes, name='recipes'),
     path('profile/', views.profile, name='profile'),
     path('statistics/', views.statistics, name='statistics'),
     path('history/', views.history, name='history'),
+    path('recipes/', views.recipe_list, name='recipes'),
+    path('recipes/add/', views.add_recipe, name='add_recipe'),
+    path('recipes/<int:recipe_id>/', views.recipe_detail, name='recipe_detail'),
+    
 ]

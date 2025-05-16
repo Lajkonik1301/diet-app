@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import RegisterForm
 from core.models import Meal
+from .models import Recipe
 
 def index(request):
     if request.method == 'POST':
@@ -77,8 +80,44 @@ def main(request):
     
     return render(request, "core/main.html")
 
-def recipes(request):
-    return render(request, 'core/recipes.html')
+
+
+def recipe_list(request):
+    query = request.GET.get('q', '')
+    # recipes = Recipe.objects.all()
+    recipes = Recipe.objects.all()
+
+    #if query:
+    #    recipes = recipes.filter(name__icontains=query)
+
+    paginator = Paginator(recipes, 6)  # 6 = 2 rzędy po 3
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'core/recipes.html', {'recipes': page_obj, 'recipes_count': recipes.count()})
+    #return render(request, 'core/recipes.html', {'recipes': page_obj})
+
+@login_required
+def add_recipe(request):
+    if request.method == 'POST':
+        recipe = Recipe(
+            user=request.user,
+            name=request.POST.get('name'),
+            description=request.POST.get('description'),
+            calories=int(request.POST.get('calories')),
+            protein=int(request.POST.get('protein')),
+            fat=int(request.POST.get('fat')),
+            carbs=int(request.POST.get('carbs')),
+            meal_type=request.POST.get('meal_type'),
+            prep_time=int(request.POST.get('prep_time')),
+        )
+        recipe.save()
+        return redirect('recipes')
+    return render(request, 'core/add_recipe.html')
+
+def recipe_detail(request, recipe_id):
+    # Tymczasowy placeholder do czasu implementacji
+    return render(request, 'core/recipe_detail.html', {'recipe_id': recipe_id})
 
 def profile(request):
     return render(request, 'core/profile.html')
