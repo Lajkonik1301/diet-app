@@ -27,23 +27,84 @@
     <div class="container">
         <!-- Pierwszy panel -->
         <div class="panel">
-            <h2 class="summary-title">Daily summary</h2>
-            <p class="calories-text">420/2137 kcal</p>
-            <div class="progress-row">
-                <progress class="main-progress" value="420" max="2137"></progress>
+            <h2 class="daily-summary-title">Daily Summary</h2>
 
-                <div class="progress-container">
-                    <progress class="small-progress" value="40" max="100"></progress>
-                    <progress class="small-progress" value="60" max="100"></progress>
-                    <progress class="small-progress" value="80" max="100"></progress>
+            <!-- Kalorie -->
+            <div class="progress-row">
+                <div class="progress-element">
+                    <p class="calories-text">
+                        <span class="{% if total_calories > goal_calories %}over{% endif %}">
+                            Calories: {{ total_calories }}
+                        </span>
+                            / {{ goal_calories }} kcal
+                    </p>
+                    <progress class="kcal-progress {% if total_calories > goal_calories %}over{% endif %}"
+                            value="{{ total_calories }}"
+                            max="{{ goal_calories }}">
+                    </progress>
+                    <p class="remaining-text {% if total_calories > goal_calories %}over{% endif %}">
+                        Remaining: {{ remaining_calories}}
+                    </p>
                 </div>
+
+                <!-- Białko -->
+                <div class="progress-element">
+                    <p class="macro-text">
+                        <span class="{% if total_protein > goal_protein %}over{% endif %}">
+                            Protein: {{ total_protein }}
+                        </span>
+                            / {{ goal_protein }} g
+                    </p>
+                    <progress class="small-progress {% if total_protein > goal_protein %}over{% endif %}"
+                            value="{{ total_protein }}"
+                            max="{{ goal_protein }}">
+                    </progress>
+                    <p class="remaining-text">
+                        Remaining: {{ remaining_protein}}
+                    </p>
+                </div>
+
+                <!-- Tłuszcze -->
+                <div class="progress-element">
+                    <p class="macro-text">
+                        <span class="{% if total_fat > goal_fat %}over{% endif %}">
+                            Fats: {{ total_fat }}
+                        </span>
+                            / {{ goal_fat }} g
+                    </p>
+                    <progress class="small-progress {% if total_fat > goal_fat %}over{% endif %}"
+                            value="{{ total_fat }}"
+                            max="{{ goal_fat }}">
+                    </progress>
+                    <p class="remaining-text">
+                        Remaining: {{ remaining_fat}}
+                    </p>
+                </div>
+
+                <!-- Węglowodany -->
+                <div class="progress-element">
+                    <p class="macro-text {% if total_carbs > goal_carbs %}over{% endif %}">
+                        <span class="{% if total_carbs > goal_carbs %}over{% endif %}">
+                            Carbs: {{ total_carbs }}
+                        </span>
+                            / {{ goal_carbs }} g
+                    </p>
+                    <progress class="small-progress {% if total_carbs > goal_carbs %}over{% endif %}"
+                            value="{{ total_carbs }}"
+                            max="{{ goal_carbs }}">
+                    </progress>
+                    <p class="remaining-text">
+                        Remaining: {{ remaining_carbs}}
+                    </p>
+                </div>
+
             </div>
-            <p class="rem-text">Remaining calories: 1717</p>
         </div>
+
         
         <!-- Drugi panel (z większą szerokością) -->
         <div class="panel second-panel">
-            <h2 class="summary-title">Add meal</h2>
+            <h2 class="add-meal-summary-title">Add meal</h2>
             <form action="#" method="post">
                 {% csrf_token %}
                 <input type="text" class="meal-input" placeholder="Meal name" name="meal-name">

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from datetime import date
 from django.core.paginator import Paginator
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import RegisterForm
@@ -60,7 +61,7 @@ def main(request):
     if request.method == "POST":
         name = request.POST.get("meal-name")
         calories = request.POST.get("calories")
-        date = request.POST.get("date")
+        date_input = request.POST.get("date")
         meal_type = request.POST.get("meal-type")
         protein = request.POST.get("protein")
         fat = request.POST.get("fat")
@@ -70,17 +71,52 @@ def main(request):
             user=request.user,
             name=name,
             calories=calories,
-            date=date,
+            date=date_input,
             meal_type=meal_type,
             protein=protein,
             fat=fat,
             carbs=carbs
         )
-        return redirect("main")  # po dodaniu posiłku odśwież stronę
+        return redirect("main") # po dodaniu posiłku odśwież stronę
     
-    return render(request, "core/main.html")
+    # 🔴 Ustal cele dzienne (można później zrobić edytowalne przez użytkownika)
+    goal_calories = 2200
+    goal_protein = 100
+    goal_fat = 70
+    goal_carbs = 250
 
+    # 🔵 Oblicz aktualne spożycie z dzisiejszego dnia
+    today = date.today()
+    meals_today = Meal.objects.filter(user=request.user, date=today)
 
+    total_calories = sum(meal.calories for meal in meals_today)
+    remaining_calories = max(goal_calories - total_calories, 0)
+
+    total_protein = sum(meal.protein for meal in meals_today)
+    remaining_protein = max(goal_protein - total_protein, 0)
+
+    total_fat = sum(meal.fat for meal in meals_today)
+    remaining_fat = max(goal_fat - total_fat, 0)
+
+    total_carbs = sum(meal.carbs for meal in meals_today)
+    remaining_carbs = max(goal_carbs - total_carbs, 0)
+
+    context = {
+        "total_calories": total_calories,
+        'remaining_calories': remaining_calories,
+        "total_protein": total_protein,
+        'remaining_protein': remaining_protein,
+        "total_fat": total_fat,
+        'remaining_fat': remaining_fat,
+        "total_carbs": total_carbs,
+        'remaining_carbs': remaining_carbs,
+        "goal_calories": goal_calories,
+        "goal_protein": goal_protein,
+        "goal_fat": goal_fat,
+        "goal_carbs": goal_carbs,
+    }
+
+    return render(request, "core/main.html", context)
 
 def recipe_list(request):
     query = request.GET.get('q', '')

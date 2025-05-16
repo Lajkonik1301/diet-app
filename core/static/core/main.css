@@ -1,8 +1,3 @@
-.summary-title {
-    margin-top: -5px; 
-}
-
-/*panel*/
 .container {
     display: flex;
     flex-direction: column;
@@ -13,16 +8,113 @@
 .panel {
     width: 80%;          /* Szerokość pierwszego panelu */
     max-width: 3000px;
-    height: 200px;
     padding: 20px;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin: 0 auto 20px auto; /* Odstęp między panelami */
-    font-size: 20px;
     position: relative;
 }
 
+/* nagłówek panelu 'daily summary' */
+.daily-summary-title {
+    position: absolute;
+    top: 0px; /* Ustawia tytuł wyżej */
+    margin-left: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* kontener w którym znajdują się divy z paskami postępu */
+.progress-row {
+    display: flex;
+    margin: 35px 10px 0 10px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px; /* odstęp między dużym a małymi paskami */
+}
+
+/* tekst nad paskiem postępu */
+.calories-text, .macro-text{
+    margin: 1em 0 0 0;
+    font-size: 16px;
+}
+
+/* tekst pod paskiem postępu */
+.remaining-text{
+    margin: 0 0 1em 0;
+    font-size: 12px;
+    color: #646464;
+}
+
+/* szerokość pasków postępu */
+.progress-element{
+    width: 150px;
+}
+
+/* szerszy pasek dla kalorii */
+.progress-element:first-of-type{
+    width: 300px;
+}
+
+/* --- Styl paska głównego (kalorie) --- */
+.kcal-progress {
+  width: 100%;
+  height: 30px;
+  border-radius: 8px;
+  overflow: hidden;
+  appearance: none;
+}
+
+.kcal-progress::-webkit-progress-bar {
+  background-color: #eee;
+}
+
+.kcal-progress::-webkit-progress-value {
+  background-color: #4caf50;
+}
+
+/* --- Styl pasków makroskładników --- */
+/* styl paska postępu makro */
+.small-progress {
+  width: 100%;
+  height: 15px;
+  margin-top: 4px;
+  border-radius: 6px;
+  appearance: none;
+}
+
+.small-progress::-webkit-progress-bar {
+  background-color: #eee;
+  border-radius: 6px;
+}
+
+.small-progress::-webkit-progress-value {
+  background-color: #2196F3;
+  border-radius: 6px;
+}
+
+/* --- Styl gdy przekroczony limit --- */
+/* styl tekstu */
+.over {
+  color: red;
+}
+
+/* styl pasków postępu */
+.kcal-progress.over::-webkit-progress-value,
+.small-progress.over::-webkit-progress-value {
+  background-color: red;
+}
+
+/* --- Panel 'add meal' --- */
+.add-meal-summary-title {
+    position: absolute;
+    top: 0px; /* Ustawia tytuł wyżej */
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Stylizacja formularza */
 .panel.second-panel {
     width: 80%;
     height: 400px;
@@ -32,14 +124,6 @@
     gap: 20px;
 }
 
-.panel-title {
-    position: absolute;
-    top: 15px; /* Ustawia tytuł wyżej */
-    font-size: 24px;
-    font-weight: bold;
-}
-
-/* Stylizacja formularza */
 form {
     display: flex;
     flex-direction: column;
@@ -105,75 +189,4 @@ form {
     text-align: center;
     /* Bez ustawiania wysokości - to pozwala panelowi rosnąć */
     min-height: 50px;      /* Minimalna wysokość dla trzeciego panelu */
-}
-
-
-
-
-/* Kontener w jednej linii */
-.progress-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 40px; /* odstęp między dużym a małymi paskami */
-}
-
-/*progress bar*/
-.main-progress {
-    width: 300px;
-    height: 50px;
-    appearance: none;
-    margin-top: 10px;
-}
-
-.main-progress::-webkit-progress-bar {
-    background-color: #f8a898;
-    border-radius: 30px;
-}
-
-.main-progress::-webkit-progress-value {
-    background-color: #e30b21;
-    border-radius: 30px;
-}
-
-
-.progress-container {
-    display: flex;
-    margin-right: 190px;
-    gap: 180px;
-}
-
-.small-progress {
-    width: 150px; /* Możesz dostosować szerokość pasków */
-    height: 40px;
-    margin-top: 10px;
-    appearance: none;
-    display: inline-block; /* Ustawienie pasków obok siebie */
-    
-}
-
-.small-progress::-webkit-progress-bar {
-    background-color: #f8a898;  /* Tło pasków */
-    border-radius: 25px;
-}
-
-.small-progress::-webkit-progress-value {
-    background-color: #e30b21;  /* Kolor wypełnienia pasków */
-    border-radius: 25px;
-}
-
-
-
-
-.calories-text {
-    margin-top: 30px;
-    margin-bottom: 0px;
-    font-weight: bold;
-    color: #333;
-    font-size: 25px;
-}
-.rem-text {
-    margin-top: 5px;
-    margin-bottom: 0px;
-    color: #646464;
 }
