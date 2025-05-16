@@ -32,16 +32,20 @@
             <!-- Kalorie -->
             <div class="progress-row">
                 <div class="progress-element">
+                    <!-- tekst nad paskiem postępu -->
                     <p class="calories-text">
+                        Calories: 
                         <span class="{% if total_calories > goal_calories %}over{% endif %}">
-                            Calories: {{ total_calories }}
+                            {{ total_calories }}
                         </span>
                             / {{ goal_calories }} kcal
                     </p>
+                    <!-- pasek postępu -->
                     <progress class="kcal-progress {% if total_calories > goal_calories %}over{% endif %}"
                             value="{{ total_calories }}"
                             max="{{ goal_calories }}">
                     </progress>
+                    <!-- tekst pod paskiem postępu -->
                     <p class="remaining-text {% if total_calories > goal_calories %}over{% endif %}">
                         Remaining: {{ remaining_calories}}
                     </p>
@@ -49,16 +53,20 @@
 
                 <!-- Białko -->
                 <div class="progress-element">
+                    <!-- tekst nad paskiem postępu -->
                     <p class="macro-text">
+                        Protein: 
                         <span class="{% if total_protein > goal_protein %}over{% endif %}">
-                            Protein: {{ total_protein }}
+                            {{ total_protein }}
                         </span>
                             / {{ goal_protein }} g
                     </p>
+                    <!-- pasek postępu -->
                     <progress class="small-progress {% if total_protein > goal_protein %}over{% endif %}"
                             value="{{ total_protein }}"
                             max="{{ goal_protein }}">
                     </progress>
+                    <!-- tekst pod paskiem postępu -->
                     <p class="remaining-text">
                         Remaining: {{ remaining_protein}}
                     </p>
@@ -66,16 +74,20 @@
 
                 <!-- Tłuszcze -->
                 <div class="progress-element">
+                    <!-- tekst nad paskiem postępu -->
                     <p class="macro-text">
+                        Fats: 
                         <span class="{% if total_fat > goal_fat %}over{% endif %}">
-                            Fats: {{ total_fat }}
+                            {{ total_fat }}
                         </span>
                             / {{ goal_fat }} g
                     </p>
+                    <!-- pasek postępu -->
                     <progress class="small-progress {% if total_fat > goal_fat %}over{% endif %}"
                             value="{{ total_fat }}"
                             max="{{ goal_fat }}">
                     </progress>
+                    <!-- tekst pod paskiem postępu -->
                     <p class="remaining-text">
                         Remaining: {{ remaining_fat}}
                     </p>
@@ -83,16 +95,20 @@
 
                 <!-- Węglowodany -->
                 <div class="progress-element">
+                    <!-- tekst nad paskiem postępu -->
                     <p class="macro-text {% if total_carbs > goal_carbs %}over{% endif %}">
+                        Carbs: 
                         <span class="{% if total_carbs > goal_carbs %}over{% endif %}">
-                            Carbs: {{ total_carbs }}
+                            {{ total_carbs }}
                         </span>
                             / {{ goal_carbs }} g
                     </p>
+                    <!-- pasek postępu -->
                     <progress class="small-progress {% if total_carbs > goal_carbs %}over{% endif %}"
                             value="{{ total_carbs }}"
                             max="{{ goal_carbs }}">
                     </progress>
+                    <!-- tekst pod paskiem postępu -->
                     <p class="remaining-text">
                         Remaining: {{ remaining_carbs}}
                     </p>

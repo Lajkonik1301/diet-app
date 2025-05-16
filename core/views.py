@@ -79,13 +79,13 @@ def main(request):
         )
         return redirect("main") # po dodaniu posiłku odśwież stronę
     
-    # 🔴 Ustal cele dzienne (można później zrobić edytowalne przez użytkownika)
+    # Na sztywno cele dzienne spożycia
     goal_calories = 2200
     goal_protein = 100
     goal_fat = 70
     goal_carbs = 250
 
-    # 🔵 Oblicz aktualne spożycie z dzisiejszego dnia
+    # Obliczanie dziennego spożycia
     today = date.today()
     meals_today = Meal.objects.filter(user=request.user, date=today)
 
