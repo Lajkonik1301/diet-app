@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from datetime import date
+from datetime import timedelta
 from django.core.paginator import Paginator
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import RegisterForm
@@ -162,5 +163,26 @@ def profile(request):
 def statistics(request):
     return render(request, 'core/statistics.html')
 
+@login_required
 def history(request):
-    return render(request, 'core/history.html')
+    today = date.today()
+    start_date = today - timedelta(days=6)  # 7 dni łącznie
+    
+    meals_last_7_days = Meal.objects.filter(
+        user=request.user,
+        date__range=[start_date, today]
+    ).order_by('date')
+
+    # Grupowanie posiłków po datach
+    from collections import defaultdict
+    meals_by_date = defaultdict(list)
+    for meal in meals_last_7_days:
+        meals_by_date[meal.date].append(meal)
+
+    # Posortowana lista krotek (data, lista posiłków)
+    sorted_meals = sorted(meals_by_date.items(), key=lambda x: x[0], reverse=True)
+
+    context = {
+        "meals_by_date": sorted_meals,
+    }
+    return render(request, "core/history.html", context)

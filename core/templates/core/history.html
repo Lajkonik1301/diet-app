@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
     <title>Recipes</title>
     <link rel="stylesheet" href="{% static 'core/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'core/history.css' %}">
   
   <style>
     label {
@@ -14,23 +15,50 @@
 </head>
 <body>
 
-<div class="navbar">
-    <div class="navbar-left">
-        <a href="{% url 'main' %}"><span class="brand-text">FitTrack</span></a>
-    </div>
+  <div class="navbar">
+      <div class="navbar-left">
+          <a href="{% url 'main' %}"><span class="brand-text">FitTrack</span></a>
+      </div>
 
-    <div class="navbar-right">
-        <a href="{% url 'recipes' %}"><button>Recipes</button></a>
-        <a href="{% url 'statistics' %}"><button>Statistics</button></a>
-        <a href="{% url 'history' %}"><button>History</button></a>
-        <a href="{% url 'profile' %}"><button>Profile</button></a>
-        {% if user.is_authenticated %}
-            <a href="{% url 'logout' %}"><button class="logout-btn">Logout</button></a>
-        {% endif %}
-    </div>
-</div>
+      <div class="navbar-right">
+          <a href="{% url 'recipes' %}"><button>Recipes</button></a>
+          <a href="{% url 'statistics' %}"><button>Statistics</button></a>
+          <a href="{% url 'history' %}"><button>History</button></a>
+          <a href="{% url 'profile' %}"><button>Profile</button></a>
+          {% if user.is_authenticated %}
+              <a href="{% url 'logout' %}"><button class="logout-btn">Logout</button></a>
+          {% endif %}
+      </div>
+  </div>
 
-<h2>historia</h2>
+  
+  <div class="history-container">
+    {% for date, meals in meals_by_date %}
+      <div class="day-card">
+        <h3>{{ date|date:"l, d M Y" }}</h3>
+        <ul class="meals-list">
+          {% for meal in meals %}
+            <li class="meal-item">
+              <strong>{{ meal.meal_type }}</strong>: {{ meal.name }}<br>
+              {{ meal.calories }} kcal, {{ meal.protein }}g protein, {{ meal.fat }}g fat, {{ meal.carbs }}g carbs
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% empty %}
+      <p>No meals found in last 7 days.</p>
+    {% endfor %}
+  </div>
+
+  <script>
+    const btn = document.getElementById('show-month-btn');
+    const last30 = document.getElementById('last-30-days');
+
+    btn.addEventListener('click', () => {
+      last30.classList.remove('hidden');
+      btn.style.display = 'none';
+    });
+  </script>
 
 </body>
 </html>

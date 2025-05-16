@@ -19,11 +19,11 @@ class Meal(models.Model):
     
 class Recipe(models.Model):
     MEAL_TYPES = [
-        ('breakfast', 'Breakfast'),
-        ('lunch', 'Lunch'),
-        ('dinner', 'Dinner'),
-        ('snack', 'Snack'),
-        ('supper', 'Supper'),
+        ('Breakfast', 'Breakfast'),
+        ('Lunch', 'Lunch'),
+        ('Dinner', 'Dinner'),
+        ('Snack', 'Snack'),
+        ('Supper', 'Supper'),
         ('UNSTOPPABLE MIDNIGHT SWEETS CRAVE', 'UNSTOPPABLE MIDNIGHT SWEETS CRAVE')
     ]
 
