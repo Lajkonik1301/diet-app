@@ -8,6 +8,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from .forms import RegisterForm
 from core.models import Meal
 from .models import Recipe
+from django.shortcuts import get_object_or_404, redirect
 
 def index(request):
     if request.method == 'POST':
@@ -120,6 +121,11 @@ def main(request):
 
     return render(request, "core/main.html", context)
 
+def delete_meal(request, meal_id):
+    meal = get_object_or_404(Meal, id=meal_id)
+    meal.delete()
+    return redirect('main')
+
 def recipe_list(request):
     query = request.GET.get('q', '')
     # recipes = Recipe.objects.all()
@@ -159,6 +165,14 @@ def recipe_detail(request, recipe_id):
 
 def profile(request):
     return render(request, 'core/profile.html')
+
+def edit_profile(request):
+   
+    return render(request, 'core/edit_profile.html')
+    
+def edit_goals(request):
+    
+    return render(request, 'core/edit_goals.html')
 
 def statistics(request):
     return render(request, 'core/statistics.html')

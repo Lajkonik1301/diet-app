@@ -1,0 +1,102 @@
+.panel-container {
+  display: flex;
+  gap: 20px; /* odstęp między panelami */
+  margin-top: 20px;
+  padding: 0 40px;
+}
+
+/* Wspólny styl dla paneli */
+.panel {
+  position: relative;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 80px;
+  height: 500px;
+}
+
+/* Lewy - węższy */
+.left-panel {
+  flex: 1; /* 1 część z 3 */
+}
+
+/* Prawy - szerszy */
+.right-panel {
+  flex: 2; /* 2 części z 3 */
+}
+
+.profile-info {
+    margin-top: 50px; /* Zwiększa odstęp od "My profile" */
+}
+
+.goals-info {
+    margin-top: 50px; /* Zwiększa odstęp od "Goals"*/
+}
+
+.profile h2 {
+    font-size: 40px; /* Powiększenie tekstu */
+    font-weight: bold; /* Pogrubienie */
+    color: #00004d; /* Ciemniejszy kolor */
+
+    margin: 5px 0; /* Drobna regulacja odstępu */
+}
+
+.profile p {
+    font-size: 30px; /* Powiększenie tekstu */
+    font-weight: bold; /* Pogrubienie */
+    color: #00004d; /* Ciemniejszy kolor */
+    margin: 5px 0; /* Drobna regulacja odstępu */
+}
+
+.profile e {
+    font-size: 30px; /* Powiększenie tekstu */
+    color: #333; /* Ciemniejszy kolor */
+    margin: 5px 0; /* Drobna regulacja odstępu */
+}
+
+/*to żeby macro wyświetlały sie w jednej lini z odstępami*/
+.macronutrient {
+    display: flex;
+    gap: 160px; /* Odstęp między wartościami */
+    font-size: 30px; /* Powiększenie tekstu */
+    color: #333; /* Ciemniejszy kolor */
+    margin: 5px 0; /* Drobna regulacja odstępu */
+}
+
+
+.button {
+  background-color: #00004d;
+  color: white;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  border-radius: 20px;
+}
+
+.buttons-wrapper {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px; /* odstęp między przyciskami */
+}
+
+
+/*ramki przy edycji*/
+input {
+  border: 2px solid #cccccc;  /* kolor i grubość ramki */
+  border-radius: 15px;          /* zaokrąglone rogi */
+  padding: 8px;                /* trochę wewnętrznego odstępu */
+  outline: none;               /* usuwa domyślne podświetlenie po focusie */
+}
+
+select {
+  border: 2px solid #cccccc;  /* kolor i grubość ramki */
+  border-radius: 15px;          /* zaokrąglone rogi */
+  padding: 8px;                /* trochę wewnętrznego odstępu */
+  outline: none;               /* usuwa domyślne podświetlenie po focusie */
+}

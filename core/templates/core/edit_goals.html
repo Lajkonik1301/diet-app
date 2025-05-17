@@ -43,9 +43,7 @@
             <p>Wzrost:</p><e>{{ user.height }} cm</e>
             <p>Waga:</p><e> {{ user.weight }} kg</e>
             </div>
-            <div class="buttons-wrapper">
-            <a href="{% url 'edit_profile' %}" class="button">Edit</a>
-            </div>
+          
     </div>
   </div>
 
@@ -54,15 +52,22 @@
     <div class="profile">
             <h2>Goals</h2>
             <div class="goals-info"></div>
-            <p>Goal weight:</p><e>{{ user.goal_weight }} kg</e>
-            <p>Caloric intake:</p><e>{{ user.caloric_intake }}kcal</e>
+            <p>Goal weight:</p>
+            <input type="number" name="goal_weight" value="{{ user.goal_weight }}" step="0.1"> kg
+
+            <p>Caloric intake:</p>
+            <input type="number" name="caloric_intake" value="{{ user.caloric_intake }}"> kcal
+
             <p>Macro limits:</p>
-            <div class="macronutrient">
-            <e>Protein: {{ user.protein_intake }} g</e><e>Fat: {{ user.fat_intake }} g</e><e>Carbs: {{ user.carbs_intake }} g</e>
+            
+            <input type="number" name="protein_intake" placeholder="protein" value="{{ user.protein_intake }}"> g
+            <input type="number" name="fat_intake" placeholder="fat" value="{{ user.fat_intake }}"> g
+            <input type="number" name="carbs_intake" placeholder="carbs" value="{{ user.carbs_intake }}"> g
             </div>
-            </div>
+
             <div class="buttons-wrapper">
-            <a href="{% url 'edit_goals' %}" class="button">Edit</a>
+            <a href="{% url 'profile' %}" class="button">Cancel</a>
+            <button class="button">Save</button> <!--TEN PRZYCISK NIE DZIAŁA-->
             </div>
             
     </div>

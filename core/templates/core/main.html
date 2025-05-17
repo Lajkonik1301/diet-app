@@ -22,7 +22,7 @@
             <a href="{% url 'logout' %}"><button class="logout-btn">Logout</button></a>
         {% endif %}
     </div>
-</div>
+    </div>
 
     <div class="container">
         <!-- Pierwszy panel -->
@@ -160,6 +160,11 @@
                         <h4>{{ meal.meal_type|title }}</h4>
                         <p><strong>{{ meal.name }}</strong></p>
                         <p>{{ meal.calories }} kcal | {{ meal.protein }}g protein | {{ meal.fat }}g fat | {{ meal.carbs }}g carbs</p>
+                    <!--usuwanie posiłku-->
+                        <form method="POST" action="{% url 'delete_meal' meal.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="delete-meal-btn">Usuń</button>
+                        </form>
                     </div>
                 {% endfor %}
             {% else %}

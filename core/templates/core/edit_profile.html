@@ -37,14 +37,30 @@
       <!--panel profil-->
             <h2>My profile</h2>
             <div class="profile-info">
-            <p>Username:</p><e>{{ user.username }}</e>
-            <p>First and Last Name:</p><e>{{ user.first_name }} {{ user.last_name }}</e>
-            <p>Płeć:</p><e>{{ user.gender }}</e>
-            <p>Wzrost:</p><e>{{ user.height }} cm</e>
-            <p>Waga:</p><e> {{ user.weight }} kg</e>
+            <p>Username:</p>
+            <input type="text" name="username" placeholder="username" value="{{ user.username }}">
+
+            <p>First and Last Name:</p>
+            <input type="text" name="first_name" placeholder="first name" value="{{ user.first_name }}">
+            <input type="text" name="last_name" placeholder="last name" value="{{ user.last_name }}">
+            
+            <p>Płeć:</p>
+            <select name="gender">
+                <option value="male" {% if user.gender == 'male' %}selected{% endif %}>Male</option>
+                <option value="female" {% if user.gender == 'female' %}selected{% endif %}>Female</option>
+                <option value="other" {% if user.gender == 'other' %}selected{% endif %}>Other</option>
+            </select>
+
+            <p>Wzrost:</p>
+            <input type="number" name="height" value="{{ user.height }}"> cm
+
+            <p>Waga:</p>
+            <input type="number" name="weight" value="{{ user.weight }}"> kg
             </div>
+
             <div class="buttons-wrapper">
-            <a href="{% url 'edit_profile' %}" class="button">Edit</a>
+            <a href="{% url 'profile' %}" class="button cancel-button">Cancel</a>
+            <button class="button">Save</button> <!--TEN PRZYCISK NIE DZIAŁA-->
             </div>
     </div>
   </div>
@@ -61,10 +77,7 @@
             <e>Protein: {{ user.protein_intake }} g</e><e>Fat: {{ user.fat_intake }} g</e><e>Carbs: {{ user.carbs_intake }} g</e>
             </div>
             </div>
-            <div class="buttons-wrapper">
-            <a href="{% url 'edit_goals' %}" class="button">Edit</a>
-            </div>
-            
+
     </div>
   </div>
 </div>

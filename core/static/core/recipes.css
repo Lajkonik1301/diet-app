@@ -16,13 +16,16 @@ label {
 }
 
 .search-bar > form > input{
-    width: 100%; 
+    width: 99%; 
     padding: 10px;
 }
 
 /*przycisk 'add recipe'*/
 .search-bar > a > button{
     padding: 10px 20px;
+    background-color: #e30b21;
+    color: white;
+    border: none;
     cursor: pointer;
 }
 
@@ -41,9 +44,10 @@ label {
 
 /*pojedynczy box przepisu*/
 .single-recipe-box{
-    border: 1px solid #ccc; 
+    background-color: #ffff;
     padding: 20px; 
     border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .paginator{

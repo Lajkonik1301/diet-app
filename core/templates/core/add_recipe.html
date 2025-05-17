@@ -1,34 +1,56 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
     <title>Add Recipe</title>
+    <link rel="stylesheet" href="{% static 'core/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'core/add_recipe.css' %}">
+
 </head>
+
 <body>
-    
+    <!-- navbar -->
+    <div class="navbar">
+        <div class="navbar-left">
+            <a href="{% url 'main' %}"><span class="brand-text">FitTrack</span></a>
+        </div>
+
+        <div class="navbar-right">
+            <a href="{% url 'recipes' %}"><button>Recipes</button></a>
+            <a href="{% url 'statistics' %}"><button>Statistics</button></a>
+            <a href="{% url 'history' %}"><button>History</button></a>
+            <a href="{% url 'profile' %}"><button>Profile</button></a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}"><button class="logout-btn">Logout</button></a>
+            {% endif %}
+        </div>
+    </div>
+
+<div class="form-panel">
     <h1>Dodaj nowy przepis</h1>
     <form method="post">
         {% csrf_token %}
-        <label for="name">Nazwa posiłku:</label><br>
+        <label for="name">Meal name:</label><br>
         <input type="text" id="name" name="name" required><br><br>
 
-        <label for="description">Przepis krok po kroku:</label><br>
+        <label for="description">Step by step recipe:</label><br>
         <textarea id="description" name="description" rows="5" cols="40" required></textarea><br><br>
 
-        <label for="calories">Kalorie:</label><br>
+        <label for="calories">Calories</label><br>
         <input type="number" id="calories" name="calories" min="0" required><br><br>
 
-        <label for="protein">Białko (g):</label><br>
+        <label for="protein">Protein (g):</label><br>
         <input type="number" id="protein" name="protein" min="0" required><br><br>
 
-        <label for="fat">Tłuszcz (g):</label><br>
+        <label for="fat">Fat (g):</label><br>
         <input type="number" id="fat" name="fat" min="0" required><br><br>
 
-        <label for="carbs">Węglowodany (g):</label><br>
+        <label for="carbs">Carbs (g):</label><br>
         <input type="number" id="carbs" name="carbs" min="0" required><br><br>
 
-        <label for="meal_type">Typ posiłku:</label><br>
+        <label for="meal_type">Meal Type:</label><br>
         <select id="meal_type" name="meal_type" required>
             <option value="breakfast">Breakfast</option>
             <option value="lunch">Lunch</option>
@@ -38,11 +60,12 @@
             <option value="supper">UNSTOPPABLE MIDNIGHT SWEETS CRAVE</option>
         </select><br><br>
 
-        <label for="prep_time">Czas przygotowania (minuty):</label><br>
+        <label for="prep_time">Preparation time (minutes):</label><br>
         <input type="number" id="prep_time" name="prep_time" min="0" required><br><br>
 
-        <button type="submit">Dodaj przepis</button>
+        <button type="submit">Add a recipe</button>
     </form>
+</div>
 
 </body>
 </html>
