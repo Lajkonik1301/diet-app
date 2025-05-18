@@ -3,7 +3,21 @@ from django.db import models
 from django.conf import settings
 
 class CustomUser(AbstractUser):
-    pass  
+    GENDER_CHOICES = [
+        ('male', 'Male'),
+        ('female', 'Female'),
+        ('other', 'Other'),
+    ]
+
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICES, blank=True, null=True)
+    height = models.PositiveIntegerField(blank=True, null=True)
+    weight = models.PositiveIntegerField(blank=True, null=True)
+
+    goal_weight = models.FloatField(blank=True, null=True)
+    caloric_intake = models.PositiveIntegerField(blank=True, null=True)
+    protein_intake = models.PositiveIntegerField(blank=True, null=True)
+    fat_intake = models.PositiveIntegerField(blank=True, null=True)
+    carbs_intake = models.PositiveIntegerField(blank=True, null=True) 
 class Meal(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)

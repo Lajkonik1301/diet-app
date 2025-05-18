@@ -3,10 +3,9 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-    <title>Recipes</title>
+    <title>Edit Goals</title>
     <link rel="stylesheet" href="{% static 'core/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'core/profile.css' %}">
-  
   <style>
     label {
       display: none !important;
@@ -34,47 +33,44 @@
 <div class="panel-container">
   <div class="panel left-panel">
     <div class="profile">
-      <!--panel profil-->
-            <h2>My profile</h2>
-            <div class="profile-info">
+        <h2>My profile</h2>
+        <div class="profile-info">
             <p>Username:</p><e>{{ user.username }}</e>
             <p>First and Last Name:</p><e>{{ user.first_name }} {{ user.last_name }}</e>
             <p>Gender:</p><e>{{ user.gender }}</e>
             <p>Height:</p><e>{{ user.height }} cm</e>
-            <p>Weight:</p><e> {{ user.weight }} kg</e>
-            </div>
-          
+            <p>Weight:</p><e>{{ user.weight }} kg</e>
+        </div>
     </div>
   </div>
 
   <div class="panel right-panel">
-    <!--panel goals-->
     <div class="profile">
-            <h2>Goals</h2>
-            <div class="goals-info"></div>
+        <h2>Goals</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+
             <p>Goal weight:</p>
-            <input type="number" name="goal_weight" value="{{ user.goal_weight }}" step="0.1"> kg
+            {{ form.goal_weight }} kg
 
             <p>Caloric intake:</p>
-            <input type="number" name="caloric_intake" value="{{ user.caloric_intake }}"> kcal
+            {{ form.caloric_intake }} kcal
 
             <p>Macro limits:</p>
-            
-            <input type="number" name="protein_intake" placeholder="protein" value="{{ user.protein_intake }}"> g
-            <input type="number" name="fat_intake" placeholder="fat" value="{{ user.fat_intake }}"> g
-            <input type="number" name="carbs_intake" placeholder="carbs" value="{{ user.carbs_intake }}"> g
-            </div>
+            {{ form.protein_intake }} g
+            {{ form.fat_intake }} g
+            {{ form.carbs_intake }} g
 
             <div class="buttons-wrapper">
-            <a href="{% url 'profile' %}" class="button">Cancel</a>
-            <button class="button">Save</button> <!--TEN PRZYCISK NIE DZIAŁA-->
+                <a href="{% url 'profile' %}" class="button">Cancel</a>
+                <button type="submit" class="button">Save</button>
             </div>
-            
+        </form>
+
     </div>
   </div>
 </div>
-
-
 
 </body>
 </html>

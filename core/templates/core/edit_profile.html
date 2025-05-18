@@ -3,10 +3,10 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-    <title>Recipes</title>
+    <title>Edit Profile</title>
     <link rel="stylesheet" href="{% static 'core/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'core/profile.css' %}">
-  
+
   <style>
     label {
       display: none !important;
@@ -34,55 +34,47 @@
 <div class="panel-container">
   <div class="panel left-panel">
     <div class="profile">
-      <!--panel profil-->
-            <h2>My profile</h2>
+        <h2>My profile</h2>
+        <form method="post">
+            {% csrf_token %}
             <div class="profile-info">
-            <p>Username:</p>
-            <input type="text" name="username" placeholder="username" value="{{ user.username }}">
+                <p>First and Last Name:</p>
+                {{ form.first_name }}
+                {{ form.last_name }}
 
-            <p>First and Last Name:</p>
-            <input type="text" name="first_name" placeholder="first name" value="{{ user.first_name }}">
-            <input type="text" name="last_name" placeholder="last name" value="{{ user.last_name }}">
-            
-            <p>Gender:</p>
-            <select name="gender">
-                <option value="male" {% if user.gender == 'male' %}selected{% endif %}>Male</option>
-                <option value="female" {% if user.gender == 'female' %}selected{% endif %}>Female</option>
-                <option value="other" {% if user.gender == 'other' %}selected{% endif %}>Other</option>
-            </select>
+                <p>Gender:</p>
+                {{ form.gender }}
 
-            <p>Height:</p>
-            <input type="number" name="height" value="{{ user.height }}"> cm
+                <p>Height:</p>
+                {{ form.height }} cm
 
-            <p>Weight:</p>
-            <input type="number" name="weight" value="{{ user.weight }}"> kg
+                <p>Weight:</p>
+                {{ form.weight }} kg
             </div>
 
             <div class="buttons-wrapper">
-            <a href="{% url 'profile' %}" class="button cancel-button">Cancel</a>
-            <button class="button">Save</button> <!--TEN PRZYCISK NIE DZIAŁA-->
+                <a href="{% url 'profile' %}" class="button cancel-button">Cancel</a>
+                <button type="submit" class="button">Save</button>
             </div>
+        </form>
     </div>
   </div>
 
   <div class="panel right-panel">
-    <!--panel goals-->
     <div class="profile">
-            <h2>Goals</h2>
-            <div class="goals-info"></div>
-            <p>Goal weight:</p><e>{{ user.goal_weight }} kg</e>
-            <p>Caloric intake:</p><e>{{ user.caloric_intake }}kcal</e>
-            <p>Macro limits:</p>
-            <div class="macronutrient">
-            <e>Protein: {{ user.protein_intake }} g</e><e>Fat: {{ user.fat_intake }} g</e><e>Carbs: {{ user.carbs_intake }} g</e>
-            </div>
-            </div>
-
+        <h2>Goals</h2>
+        <div class="goals-info"></div>
+        <p>Goal weight:</p><e>{{ user.goal_weight }} kg</e>
+        <p>Caloric intake:</p><e>{{ user.caloric_intake }}kcal</e>
+        <p>Macro limits:</p>
+        <div class="macronutrient">
+            <e>Protein: {{ user.protein_intake }} g</e>
+            <e>Fat: {{ user.fat_intake }} g</e>
+            <e>Carbs: {{ user.carbs_intake }} g</e>
+        </div>
     </div>
   </div>
 </div>
-
-
 
 </body>
 </html>

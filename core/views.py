@@ -5,7 +5,7 @@ from datetime import date
 from datetime import timedelta
 from django.core.paginator import Paginator
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import RegisterForm
+from .forms import RegisterForm, ProfileUpdateForm, GoalUpdateForm
 from core.models import Meal
 from .models import Recipe
 from django.shortcuts import get_object_or_404, redirect
@@ -166,13 +166,31 @@ def recipe_detail(request, recipe_id):
 def profile(request):
     return render(request, 'core/profile.html')
 
+@login_required
 def edit_profile(request):
-   
-    return render(request, 'core/edit_profile.html')
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = ProfileUpdateForm(instance=request.user)
+
+    return render(request, 'core/edit_profile.html', {'form': form})
     
+@login_required
 def edit_goals(request):
-    
-    return render(request, 'core/edit_goals.html')
+    user = request.user
+
+    if request.method == 'POST':
+        form = GoalUpdateForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = GoalUpdateForm(instance=user)
+
+    return render(request, 'core/edit_goals.html', {'form': form})
 
 def statistics(request):
     return render(request, 'core/statistics.html')
