@@ -147,7 +147,7 @@ def add_recipe(request):
         recipe = Recipe(
             user=request.user,
             name=request.POST.get('name'),
-            description=request.POST.get('description'),
+            instructions=request.POST.get('instructions'),
             calories=int(request.POST.get('calories')),
             protein=int(request.POST.get('protein')),
             fat=int(request.POST.get('fat')),
