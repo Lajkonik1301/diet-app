@@ -160,8 +160,8 @@ def add_recipe(request):
     return render(request, 'core/add_recipe.html')
 
 def recipe_detail(request, recipe_id):
-    # Tymczasowy placeholder do czasu implementacji
-    return render(request, 'core/recipe_detail.html', {'recipe_id': recipe_id})
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+    return render(request, 'core/recipe_detail.html', {'recipe': recipe})
 
 def profile(request):
     return render(request, 'core/profile.html')

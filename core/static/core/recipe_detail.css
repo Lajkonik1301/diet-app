@@ -1,0 +1,55 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.recipe-detail-container {
+    max-width: 800px;
+    margin: 30px auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-detail-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.meta-info {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.tag {
+    background-color: #e30b21;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.nutrition h3,
+.instructions h3 {
+    margin-top: 20px;
+    color: #333;
+}
+
+.nutrition ul {
+    list-style: none;
+    padding: 0;
+}
+
+.nutrition li {
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.instructions p {
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
