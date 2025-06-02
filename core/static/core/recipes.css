@@ -58,3 +58,26 @@ label {
 .paginator > span{
     margin: 0 10px;
 }
+
+/*paginacja*/
+.paginator a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #e30b21;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    margin: 0 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.paginator a:hover {
+    background-color: #c0091b;
+}
+
+.paginator > span {
+    font-weight: bold;
+    color: #333;
+}

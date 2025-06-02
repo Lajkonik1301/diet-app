@@ -134,7 +134,7 @@ def recipe_list(request):
     #if query:
     #    recipes = recipes.filter(name__icontains=query)
 
-    paginator = Paginator(recipes, 6)  # 6 = 2 rzędy po 3
+    paginator = Paginator(recipes, 9)  # 6 = 2 rzędy po 3
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
