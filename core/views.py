@@ -9,6 +9,7 @@ from .forms import RegisterForm, ProfileUpdateForm, GoalUpdateForm
 from core.models import Meal
 from .models import Recipe
 from django.shortcuts import get_object_or_404, redirect
+import json
 
 def index(request):
     if request.method == 'POST':
@@ -192,8 +193,49 @@ def edit_goals(request):
 
     return render(request, 'core/edit_goals.html', {'form': form})
 
+@login_required
 def statistics(request):
-    return render(request, 'core/statistics.html')
+    today = date.today()
+    start_date = today - timedelta(days=6)
+
+    meals = Meal.objects.filter(user=request.user, date__range=[start_date, today])
+
+    daily_data = {}
+    for day in range(7):
+        day_date = start_date + timedelta(days=day)
+        daily_data[day_date] = {'calories': 0, 'protein': 0, 'fat': 0, 'carbs': 0}
+
+    for meal in meals:
+        daily = daily_data[meal.date]
+        daily['calories'] += meal.calories
+        daily['protein'] += meal.protein
+        daily['fat'] += meal.fat
+        daily['carbs'] += meal.carbs
+
+    dates = [d.strftime('%Y-%m-%d') for d in daily_data.keys()]
+    calories = [daily_data[d]['calories'] for d in daily_data.keys()]
+    protein = [daily_data[d]['protein'] for d in daily_data.keys()]
+    fat = [daily_data[d]['fat'] for d in daily_data.keys()]
+    carbs = [daily_data[d]['carbs'] for d in daily_data.keys()]
+
+    user = request.user
+    goal_calories = user.caloric_intake or 2200
+    goal_protein = user.protein_intake or 100
+    goal_fat = user.fat_intake or 70
+    goal_carbs = user.carbs_intake or 250
+
+    context = {
+        'dates': json.dumps(dates),
+        'calories': json.dumps(calories),
+        'protein': json.dumps(protein),
+        'fat': json.dumps(fat),
+        'carbs': json.dumps(carbs),
+        'goal_calories': json.dumps(goal_calories),
+        'goal_protein': json.dumps(goal_protein),
+        'goal_fat': json.dumps(goal_fat),
+        'goal_carbs': json.dumps(goal_carbs),
+    }
+    return render(request, 'core/statistics.html', context)
 
 @login_required
 def history(request):

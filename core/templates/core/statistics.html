@@ -1,36 +1,95 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pl">
-<head>
-  <meta charset="UTF-8">
-    <title>Recipes</title>
-    <link rel="stylesheet" href="{% static 'core/navbar.css' %}">
-  
-  <style>
-    label {
-      display: none !important;
-    }
-  </style>  
-</head>
-<body>
-
-<div class="navbar">
-    <div class="navbar-left">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Statistics</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{% static 'core/navbar.css' %}" />
+    <link rel="stylesheet" href="{% static 'core/statistics.css' %}" />
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="navbar-left">
         <a href="{% url 'main' %}"><span class="brand-text">FitTrack</span></a>
-    </div>
-
-    <div class="navbar-right">
+      </div>
+      <div class="navbar-right">
         <a href="{% url 'recipes' %}"><button>Recipes</button></a>
         <a href="{% url 'statistics' %}"><button>Statistics</button></a>
         <a href="{% url 'history' %}"><button>History</button></a>
         <a href="{% url 'profile' %}"><button>Profile</button></a>
         {% if user.is_authenticated %}
-            <a href="{% url 'logout' %}"><button class="logout-btn">Logout</button></a>
+        <a href="{% url 'logout' %}"
+          ><button class="logout-btn">Logout</button></a
+        >
         {% endif %}
+      </div>
     </div>
-</div>
 
-<h2>Statystyka matematyka</h2>
+    <div class="statistics-container">
+      <h2>Podsumowanie kalorii</h2>
+      <div class="main-chart">
+        <canvas id="caloriesChart"></canvas>
+      </div>
 
-</body>
+      <h2>Białko, Tłuszcz, Węgle</h2>
+      <div class="chart-row">
+        <div class="chart-container"><canvas id="proteinChart"></canvas></div>
+        <div class="chart-container"><canvas id="fatChart"></canvas></div>
+        <div class="chart-container"><canvas id="carbsChart"></canvas></div>
+      </div>
+    </div>
+
+    <script>
+      const dates = JSON.parse('{{ dates|safe }}');
+      const calories = JSON.parse('{{ calories|safe }}');
+      const protein = JSON.parse('{{ protein|safe }}');
+      const fat = JSON.parse('{{ fat|safe }}');
+      const carbs = JSON.parse('{{ carbs|safe }}');
+      const goalCalories = JSON.parse('{{ goal_calories }}');
+      const goalProtein = JSON.parse('{{ goal_protein }}');
+      const goalFat = JSON.parse('{{ goal_fat }}');
+      const goalCarbs = JSON.parse('{{ goal_carbs }}');
+
+
+
+            function createChart(ctx, label, data, goal) {
+              new Chart(ctx, {
+                type: 'bar',
+                data: {
+                  labels: dates,
+                  datasets: [
+                    {
+                      label: label,
+                      data: data,
+                      backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                      borderColor: 'rgba(54, 162, 235, 1)',
+                      borderWidth: 1
+                    },
+                    {
+                      label: 'Cel',
+                      data: Array(data.length).fill(goal),
+                      type: 'line',
+                      borderColor: 'rgba(255, 99, 132, 1)',
+                      borderWidth: 2,
+                      fill: false
+                    }
+                  ]
+                },
+                options: {
+                  scales: {
+                    y: {
+                      beginAtZero: true
+                    }
+                  }
+                }
+              });
+            }
+
+            createChart(document.getElementById('caloriesChart'), 'Kalorie (kcal)', calories, goalCalories);
+            createChart(document.getElementById('proteinChart'), 'Białko (g)', protein, goalProtein);
+            createChart(document.getElementById('fatChart'), 'Tłuszcz (g)', fat, goalFat);
+            createChart(document.getElementById('carbsChart'), 'Węglowodany (g)', carbs, goalCarbs);
+    </script>
+  </body>
 </html>

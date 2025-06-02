@@ -1,0 +1,38 @@
+.statistics-container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.main-chart {
+    margin-bottom: 40px;
+}
+
+.main-chart canvas {
+    max-width: 600px;
+    width: 100%;
+    height: auto !important;
+    margin: 0 auto;
+}
+
+.chart-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.chart-container {
+    flex: 1 1 250px;
+    max-width: 450px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+canvas {
+    width: 100% !important;
+    height: auto !important;
+}
