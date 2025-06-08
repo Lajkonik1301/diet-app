@@ -60,6 +60,8 @@ def logout_view(request):
     logout(request)
     return redirect('login') 
 
+from datetime import date
+
 def main(request):
     if request.method == "POST":
         name = request.POST.get("meal-name")
@@ -80,13 +82,14 @@ def main(request):
             fat=fat,
             carbs=carbs
         )
-        return redirect("main") # po dodaniu posiłku odśwież stronę
-    
-    # Na sztywno cele dzienne spożycia
-    goal_calories = 2200
-    goal_protein = 100
-    goal_fat = 70
-    goal_carbs = 250
+        return redirect("main")
+
+    # POBIERZ CELE Z PROFILU UŻYTKOWNIKA
+    user = request.user
+    goal_calories = user.caloric_intake or 2200
+    goal_protein = user.protein_intake or 100
+    goal_fat = user.fat_intake or 70
+    goal_carbs = user.carbs_intake or 250
 
     # Obliczanie dziennego spożycia
     today = date.today()
@@ -121,6 +124,7 @@ def main(request):
     }
 
     return render(request, "core/main.html", context)
+
 
 def delete_meal(request, meal_id):
     meal = get_object_or_404(Meal, id=meal_id)
